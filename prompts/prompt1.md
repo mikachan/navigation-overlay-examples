@@ -10,5 +10,9 @@ Requirements:
 - Wrap everything in a core/group with vertical flex layout, generous padding, and comfortable spacing between sections so the content is scrollable and readable on a phone.
 - Use only theme.json design tokens for colours, spacing, and font sizes (var:preset|color|…, var:preset|spacing|…, var:preset|font-size|…). Do not hardcode values.
 - Background should use a subtle surface colour; text should use the contrast colour.
+- Set `"overlayMenu":"never"` on `core/navigation` so it doesn't try to nest another overlay.
+- Keep the outermost `core/group` wrapper minimal — no `minHeight`, no flex `layout`, no `backgroundColor`/`textColor`. Put colours on inner sections or the template part; padding on the outer wrapper is fine.
+- Place `core/navigation-overlay-close` as a direct child of the outer wrapper (inside its own right-aligned flex group) — not nested inside a `core/cover` or other block with `contentPosition`.
+- Use consistent horizontal padding on every direct child of the outer wrapper (or put padding on the outer wrapper and let children sit naturally) — don't let images go edge-to-edge while text is indented.
 
 Return the markup only — no prose, no template-part wrapper.
