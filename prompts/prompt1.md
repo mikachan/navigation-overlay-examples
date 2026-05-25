@@ -12,7 +12,7 @@ Requirements:
 - Background should use a subtle surface colour; text should use the contrast colour.
 - Set `"overlayMenu":"never"` on `core/navigation` so it doesn't try to nest another overlay.
 - Keep the outermost `core/group` wrapper minimal — no `minHeight`, no flex `layout`, no `backgroundColor`/`textColor`. Put colours on inner sections or the template part; padding on the outer wrapper is fine.
-- Place `core/navigation-overlay-close` as a direct child of the outer wrapper (inside its own right-aligned flex group) — not nested inside a `core/cover` or other block with `contentPosition`.
+- Place `core/navigation-overlay-close` inside its own right-aligned flex group. Parent blocks with `contentPosition` (like `core/cover`) can pin it somewhere unexpected — if you nest it inside one, verify it still lands top-right; otherwise keep it as a direct child of the outer wrapper.
 - Use consistent horizontal padding on every direct child of the outer wrapper (or put padding on the outer wrapper and let children sit naturally) — don't let images go edge-to-edge while text is indented.
 
 Return the markup only — no prose, no template-part wrapper.

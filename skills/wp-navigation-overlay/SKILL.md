@@ -87,18 +87,18 @@ If you do need padding on the outer wrapper, set `style.spacing.padding` and tha
 
 This rule is conservative — fancier outer wrappers *can* work, but they're a frequent source of validation errors and the visual payoff is usually small.
 
-### Keep the close button at the top level
+### Mind parent `contentPosition` when placing the close button
 
-Place the `core/navigation-overlay-close` block (inside its own right-aligned `core/group` flex row) as a direct child of the outer wrapper — *not* nested inside decorative containers like `core/cover` or any block with custom `contentPosition`.
+Place the `core/navigation-overlay-close` block inside its own right-aligned `core/group` flex row. The simplest reliable position is as a direct child of the outer wrapper — but nesting inside a `core/cover` or other block with `contentPosition` is fine if you verify the close still lands top-right.
 
-**Why:** `core/cover` applies `contentPosition` to all its inner content. Even if you put an inner group with `justifyContent:"right"`, the cover's positioning can collapse the flex container's effective width and pin the close button to wherever the cover's content position sits (often bottom-left). The reliable pattern is: close button row first, then any decorative hero block as a separate sibling.
+**Why:** `core/cover` applies `contentPosition` to all its inner content. Even with an inner group set to `justifyContent:"right"`, the cover's positioning can collapse the flex container's effective width and pin the close button to wherever the cover's content position sits (often bottom-left). If you nest the close inside a cover, structure the cover and inner groups so the close still ends up top-right — or, if in doubt, keep the close button as a sibling of the cover instead.
 
 ```
 <!-- wp:group --> (outer wrapper)
   <!-- wp:group --> (close button row, justifyContent:"right")
     <!-- wp:navigation-overlay-close /-->
   <!-- /wp:group -->
-  <!-- wp:cover --> (hero, if any — never wraps the close button)
+  <!-- wp:cover --> (hero, if any — kept as a sibling here for reliability)
     ...
   <!-- /wp:cover -->
   ... (rest of overlay)

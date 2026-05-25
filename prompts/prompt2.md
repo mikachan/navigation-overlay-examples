@@ -11,6 +11,6 @@ Constraints:
 - Prefer `core/image` inside a `core/group` over `core/cover` for hero sections — cover backgrounds often fail to render after paste. If you do use `core/cover`, the `url` attribute on the cover must exactly match the `src` of the inner `<img class="wp-block-cover__image-background">`.
 - Set `"overlayMenu":"never"` on `core/navigation` so it doesn't try to nest another overlay.
 - Keep the outermost `core/group` wrapper minimal — no `minHeight`, no flex `layout`, no `backgroundColor`/`textColor`. Put colours on inner sections or the template part; padding on the outer wrapper is fine.
-- Place `core/navigation-overlay-close` as a direct child of the outer wrapper (inside its own right-aligned flex group) — not nested inside a `core/cover` or other block with `contentPosition`.
+- Place `core/navigation-overlay-close` inside its own right-aligned flex group. Parent blocks with `contentPosition` (like `core/cover`) can pin it somewhere unexpected — if you nest it inside one, verify it still lands top-right; otherwise keep it as a direct child of the outer wrapper.
 
 Return the markup only — no explanatory prose.
